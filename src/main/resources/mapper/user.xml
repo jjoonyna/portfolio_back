@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.portfolio.jjoony.repository.UserDAO">
 
+
+<mapper namespace="com.portfolio.jjoony.repository.UserDAO">
+	<!-- 일반 회원 찾기 -->
+	<select id="selectUser" parameterType="String" resultType="user">
+		select * from user
+		where id=#{id}
+	</select>
+	<!-- 일반 회원 가입 -->
+	<insert id="insertTest" parameterType="user">
+		insert into user(
+		id,
+		pwd,
+		name,
+		addr,
+		birth,
+		email,
+		university,
+		license,
+		role
+		)
+		values(
+		#{id},
+		#{pwd},
+		null,
+		null,
+		null,
+		null,
+		null,
+		null,
+		#{role}
+		)
+		
+	</insert>
 </mapper>
