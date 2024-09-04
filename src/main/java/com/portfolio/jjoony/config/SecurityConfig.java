@@ -47,7 +47,7 @@ public class SecurityConfig {
 		.csrf().disable()
 		//역할에 따라 요청 허용/제한 설정
 		.authorizeRequests()
-		.requestMatchers("/insert_test").permitAll()
+		.requestMatchers("/**").permitAll()
 		.requestMatchers("/admin/**").hasRole("ADMIN")//전체 허용
 		.requestMatchers("/test/**").hasRole("TEST");//프로젝트 등록 가능,프로젝트 수정, 삭제 및 내 정보 수정 불가
 		
@@ -56,7 +56,7 @@ public class SecurityConfig {
 		http.formLogin((auth) -> auth
 				.loginPage("/login")
 				.loginProcessingUrl("/")
-				.defaultSuccessUrl("/")
+				.defaultSuccessUrl("/",true)
 				.permitAll()
 		);
 		http.logout(logout -> logout
