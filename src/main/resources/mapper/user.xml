@@ -33,6 +33,10 @@
 		null,
 		#{role}
 		)
-		
 	</insert>
+	<!-- 회원정보 수정 -->
+	<update id="update" parameterType="user">
+	update user set addr = #{addr}, license=#{license}, email=#{email}
+	where id = #{id}
+	</update>
 </mapper>

@@ -21,7 +21,6 @@ public class LoginResponse {
 	
 	public LoginResponse(User user) {
 		this.id = user.getId();
-		this.pwd = user.getPwd();
 		this.name = user.getName();
 		this.addr = user.getAddr();
 		this.birth = user.getBirth();
