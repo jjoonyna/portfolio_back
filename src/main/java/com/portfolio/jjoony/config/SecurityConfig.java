@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
@@ -33,11 +34,14 @@ public class SecurityConfig {
 			CorsConfigurationSource source = request -> {
 				CorsConfiguration config = new CorsConfiguration();
 					config.setAllowedOrigins(
-						List.of("*")
+						List.of("http://localhost:5173")
 					);
 					config.setAllowedMethods(
-						List.of("*")
+						List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")
 					);
+					config.setAllowedHeaders(
+						List.of("Authorization", "Content-Type", "X-Requested-With", "Accept"));
+			        config.setAllowCredentials(true);
 					return config;
 				};
 				c.configurationSource(source);
@@ -55,12 +59,12 @@ public class SecurityConfig {
 		
 		http.formLogin((auth) -> auth
 				.loginPage("/login")
-				.loginProcessingUrl("/")
+				.loginProcessingUrl("http://localhost:80/login_user")
 				.defaultSuccessUrl("/",true)
 				.permitAll()
 		);
 		http.logout(logout -> logout
-				.logoutUrl("/logout")
+				.logoutRequestMatcher(new AntPathRequestMatcher("http://localhost:80/logout"))
 				.logoutSuccessUrl("/")
 				.invalidateHttpSession(true)
 				.deleteCookies("JSESSIONID")

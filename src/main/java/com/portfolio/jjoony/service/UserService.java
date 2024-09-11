@@ -25,6 +25,9 @@ public class UserService {
 	//로그인
 	public LoginResponse login(LoginRequest request) {
 		User user = dao.selectUser(request.getId()); // 회원이 있는지 없는지 확인
+		if(user ==null) {
+			throw new BadCredentialsException("잘못 입력하였습니다.");
+		}
 		if (!passwordEncoder.matches(request.getPwd(), user.getPwd())) { // 암호화된 비밀번호와 회원이 입력한 값을 인코딩하여 비교
 			throw new BadCredentialsException("잘못 입력하셨습니다.");
 		}
