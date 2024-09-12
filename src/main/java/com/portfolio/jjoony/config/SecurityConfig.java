@@ -57,12 +57,6 @@ public class SecurityConfig {
 		
 		
 		
-		http.formLogin((auth) -> auth
-				.loginPage("/login")
-				.loginProcessingUrl("http://localhost:80/login_user")
-				.defaultSuccessUrl("/",true)
-				.permitAll()
-		);
 		http.logout(logout -> logout
 				.logoutRequestMatcher(new AntPathRequestMatcher("http://localhost:80/logout"))
 				.logoutSuccessUrl("/")

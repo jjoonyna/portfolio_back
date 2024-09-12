@@ -20,7 +20,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
     public CustomAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
-        setFilterProcessesUrl("/login"); // 로그인 URL 설정
+        setFilterProcessesUrl("/login_user"); // 로그인 URL 설정
     }
 
     @Override
@@ -42,7 +42,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                                             FilterChain chain, Authentication authResult) throws IOException {
         // 로그인 성공 시 응답 처리
         response.setStatus(HttpServletResponse.SC_OK);
-        response.getWriter().write("{\"message\": \"Login successful\"}");
+        response.getWriter().write("{\"message\": \"Login 성공\"}");
     }
 
     @Override
@@ -50,6 +50,6 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                                               AuthenticationException failed) throws IOException {
         // 로그인 실패 시 응답 처리
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        response.getWriter().write("{\"error\": \"Login failed\"}");
+        response.getWriter().write("{\"error\": \"Login 실패\"}");
     }
 }
