@@ -1,4 +1,6 @@
-package com.portfolio.jjoony.model;
+package com.portfolio.jjoony.security;
+
+import com.portfolio.jjoony.model.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

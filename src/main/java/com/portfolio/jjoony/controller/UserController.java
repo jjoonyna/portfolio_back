@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.portfolio.jjoony.model.LoginRequest;
-import com.portfolio.jjoony.model.LoginResponse;
+import com.portfolio.jjoony.security.LoginRequest;
+import com.portfolio.jjoony.security.LoginResponse;
 import com.portfolio.jjoony.service.UserService;
 
 import lombok.RequiredArgsConstructor;
@@ -41,6 +41,7 @@ public class UserController {
 	public ResponseEntity<LoginResponse> update_about(@RequestBody LoginRequest request){
 		return new ResponseEntity<>(service.updatae(request),HttpStatus.OK);
 	}
+	
 	
 //  개인 포트폴리오 사이트라 관리계정, 테스트계정 제외 회원가입 없음	
 //	@PostMapping("/insert_user")

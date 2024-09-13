@@ -1,4 +1,4 @@
-package com.portfolio.jjoony.config;
+package com.portfolio.jjoony.security;
 
 import java.util.List;
 
@@ -53,17 +53,16 @@ public class SecurityConfig {
 		.authorizeRequests()
 		.requestMatchers("/**").permitAll()
 		.requestMatchers("/admin/**").hasRole("ADMIN")//전체 허용
-		.requestMatchers("/test/**").hasRole("TEST");//프로젝트 등록 가능,프로젝트 수정, 삭제 및 내 정보 수정 불가
+		.requestMatchers("/test/**").hasRole("TEST")//프로젝트 등록 가능,프로젝트 수정, 삭제 및 내 정보 수정 불가
+		.and()
+		.logout()
+		.logoutUrl("/logout")
+		.addLogoutHandler(new CustomLogoutHandler())
+		.logoutSuccessHandler(new CustomLogoutSuccessHandler())
+		.invalidateHttpSession(true)
+		.deleteCookies("JSESSIONID")
+		.permitAll();
 		
-		
-		
-		http.logout(logout -> logout
-				.logoutRequestMatcher(new AntPathRequestMatcher("http://localhost:80/logout"))
-				.logoutSuccessUrl("/")
-				.invalidateHttpSession(true)
-				.deleteCookies("JSESSIONID")
-				.permitAll()
-		);
 		
 		return http.build();
 		

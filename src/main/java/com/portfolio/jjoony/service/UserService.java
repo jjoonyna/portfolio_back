@@ -4,8 +4,8 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.portfolio.jjoony.model.LoginRequest;
-import com.portfolio.jjoony.model.LoginResponse;
+import com.portfolio.jjoony.security.LoginRequest;
+import com.portfolio.jjoony.security.LoginResponse;
 import com.portfolio.jjoony.model.User;
 import com.portfolio.jjoony.repository.UserDAO;
 

@@ -1,11 +1,11 @@
-package com.portfolio.jjoony.service;
+package com.portfolio.jjoony.security;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.portfolio.jjoony.model.CustomUserDetails;
+import com.portfolio.jjoony.security.CustomUserDetails;
 import com.portfolio.jjoony.model.User;
 import com.portfolio.jjoony.repository.UserDAO;
 

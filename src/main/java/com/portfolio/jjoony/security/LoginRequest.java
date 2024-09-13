@@ -1,4 +1,4 @@
-package com.portfolio.jjoony.model;
+package com.portfolio.jjoony.security;
 
 import lombok.Data;
 
