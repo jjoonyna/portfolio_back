@@ -54,6 +54,7 @@ public class UserService {
 	//about 주소, 자격증, email 정보 수정
 	public LoginResponse updatae(LoginRequest request) {
 		User user = dao.selectUser(request.getId());
+		System.out.println(request.getId()+","+request.getAddr()+","+request.getEmail()+","+request.getLicense());
 		user.setAddr(request.getAddr());
 		user.setLicense(request.getLicense());
 		user.setEmail(request.getEmail());
