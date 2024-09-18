@@ -39,7 +39,6 @@ out/
 ### yml ###
 src/main/resources/application.yml
 application.yml
-src/main/resources/jjoony.yml
-jjoony.yml
+
 ### Dockerfile ###
 Dockerfile
