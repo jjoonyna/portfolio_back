@@ -6,10 +6,10 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.portfolio.jjoony.security.LoginRequest;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
@@ -42,7 +42,11 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
                                             FilterChain chain, Authentication authResult) throws IOException {
         // 로그인 성공 시 응답 처리
         response.setStatus(HttpServletResponse.SC_OK);
-        response.getWriter().write("{\"message\": \"Login 성공\"}");
+        SecurityContextHolder.getContext().setAuthentication(authResult);
+        CustomUserDetails userDetails = (CustomUserDetails) authResult.getPrincipal();
+        
+        response.getWriter().write("{\"message\": \"Login 성공\", \"user\": \"" + userDetails.getUsername() + "\", \"role\":\""+authResult.getAuthorities()+"\"}");
+        System.out.println("성공");
     }
 
     @Override

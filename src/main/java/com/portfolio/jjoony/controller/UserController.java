@@ -2,6 +2,8 @@ package com.portfolio.jjoony.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,13 +25,6 @@ public class UserController {
 	private final UserService service;
 
 	
-	
-//	회원 로그인	
-	@PostMapping("/login_user")
-	public ResponseEntity<LoginResponse> login_ok(@RequestBody LoginRequest request){
-		return new ResponseEntity<>(service.login(request),HttpStatus.OK);
-	}
-	
 //	about의 정보 찾아오기	
 	@GetMapping("/find_about/{id}")
 	public ResponseEntity<LoginResponse> find_about(@PathVariable("id") String id){
@@ -39,6 +34,9 @@ public class UserController {
 //	about 주소, 자격증, email 정보 수정
 	@PutMapping("/update_about")
 	public ResponseEntity<LoginResponse> update_about(@RequestBody LoginRequest request){
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    System.out.println("Authenticated User: " + authentication.getName());
+	    System.out.println("Authorities: " + authentication.getAuthorities());
 		return new ResponseEntity<>(service.updatae(request),HttpStatus.OK);
 	}
 	
@@ -50,7 +48,7 @@ public class UserController {
 //		int result = 0; 
 //		user.setId("test1");
 //		user.setPwd("test1234");
-//		user.setRole("TEST");
+//		user.setRole("ROLE_TEST");
 //		String encpassword = passwordEncoder.encode(user.getPwd());
 //		user.setPwd(encpassword);
 //		result = service.insertTest(user);

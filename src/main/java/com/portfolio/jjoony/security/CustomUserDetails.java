@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.portfolio.jjoony.model.User;
@@ -34,7 +35,7 @@ public class CustomUserDetails implements UserDetails{
 	//사용자가 수행할 작업을 GrantedAuthority인스턴스의 컬렉션으로 반환
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return List.of(() -> user.getRole() );
+		return List.of(new SimpleGrantedAuthority(user.getRole()) );
 	}
 	@Override
 	public boolean isAccountNonExpired(){//계정 만료
