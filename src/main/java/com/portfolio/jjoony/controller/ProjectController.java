@@ -1,10 +1,15 @@
 package com.portfolio.jjoony.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestPart;
@@ -29,7 +34,8 @@ public class ProjectController {
 	
 	
 	@PostMapping(value="/insert_project", consumes = "multipart/form-data")
-	public ResponseEntity<Integer> insert_project(@RequestPart(value="image", required=false) MultipartFile image,@RequestPart("project") Project project) {
+	public ResponseEntity<Integer> insert_project(@RequestPart(value="image", required=false) MultipartFile image,
+													@RequestPart("project") Project project) {
 	    int result = 0;
 		if(image ==null) {
 	    	result = -3;
@@ -42,6 +48,20 @@ public class ProjectController {
 	    }
 	}
 	
+	@GetMapping("/list_project/{id}")
+	public ResponseEntity<List<Project>> list_project(@PathVariable("id") String id){
+		List<Project> projectList = service.getProjects(id);
+		return new ResponseEntity<>(projectList,HttpStatus.OK);
+	}
 	
-	
+	@DeleteMapping("/delete_project/{no}")
+	public ResponseEntity<Integer> delete_project(@PathVariable("no") int no){
+		System.out.println("hihihi::::"+no);
+		Project project = service.getProject(no);
+		String image = project.getImage();
+		s3service.deleteImageFromS3(image);
+		System.out.println("이미지삭제 완료");
+		int result = service.deleteProject(no);
+		return new ResponseEntity<>(result,HttpStatus.OK);
+	}
 }

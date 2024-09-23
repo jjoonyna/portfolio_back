@@ -4,34 +4,45 @@
 
 
 <mapper namespace="com.portfolio.jjoony.repository.ProjectDAO">
+	<select id="getProjects" parameterType="String" resultType="project">
+		select * from project where id=#{id}
+	</select>
+	
+	<select id="getProject" parameterType="int" resultType="project">
+		select * from project where no=#{no}
+	</select>
+	
+	<delete id="deleteProject" parameterType="int">
+		delete from project where no=#{no}
+	</delete>
 	
 	<insert id="insert" parameterType="project">
-	insert into project(
-	subject,
-	summary,
-	startDate,
-	endDate,
-	person,
-	content,
-	link,
-	problem,
-	solution,
-	image,
-	id
-	)
-	values(
-	#{subject},
-	#{summary},
-	#{startDate},
-	#{endDate},
-	#{person},
-	#{content},
-	#{link},
-	#{problem},
-	#{solution},
-	#{image},
-	#{id}
-	)
+		insert into project(
+		subject,
+		summary,
+		startDate,
+		endDate,
+		person,
+		content,
+		link,
+		problem,
+		solution,
+		image,
+		id
+		)
+		values(
+		#{subject},
+		#{summary},
+		#{startDate},
+		#{endDate},
+		#{person},
+		#{content},
+		#{link},
+		#{problem},
+		#{solution},
+		#{image},
+		#{id}
+		)
 	</insert>
 	
 </mapper>

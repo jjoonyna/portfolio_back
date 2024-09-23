@@ -22,7 +22,6 @@ public class CustomCookieFilter extends OncePerRequestFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 	        throws ServletException, IOException {
-		System.out.println("hihihi");
 	    // 쿠키에서 USER_ROLES 읽기
 	    Cookie[] cookies = request.getCookies();
 	    String roles = null;

@@ -2,6 +2,8 @@ package com.portfolio.jjoony.service;
 
 
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.portfolio.jjoony.model.Project;
@@ -18,6 +20,17 @@ public class ProjectService {
 	public int insert(Project project) {
 		int result = dao.insert(project);
 		return result;
+	}
+
+	public List<Project> getProjects(String id) {
+		return dao.getProjects(id);
+	}
+	public Project getProject(int no) {
+		return dao.getProject(no);
+	}
+
+	public int deleteProject(int no) {
+		return dao.deleteProject(no);
 	}
 	
 	
