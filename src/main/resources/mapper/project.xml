@@ -5,5 +5,33 @@
 
 <mapper namespace="com.portfolio.jjoony.repository.ProjectDAO">
 	
+	<insert id="insert" parameterType="project">
+	insert into project(
+	subject,
+	summary,
+	startDate,
+	endDate,
+	person,
+	content,
+	link,
+	problem,
+	solution,
+	image,
+	id
+	)
+	values(
+	#{subject},
+	#{summary},
+	#{startDate},
+	#{endDate},
+	#{person},
+	#{content},
+	#{link},
+	#{problem},
+	#{solution},
+	#{image},
+	#{id}
+	)
+	</insert>
 	
 </mapper>

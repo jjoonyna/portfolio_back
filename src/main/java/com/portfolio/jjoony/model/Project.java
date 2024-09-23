@@ -10,16 +10,16 @@ import lombok.Data;
 @Alias("project")
 public class Project {
 
-	private int pro_no;
-	private String pro_subject;
-	private String pro_summary;
-	private Date pro_startDate;
-	private Date pro_endDate;
-	private String pro_comment;
-	private String pro_role;
-	private String pro_problem;
-	private String pro_solution;
-	private String pro_result;
-	private String pro_image;
+	private int no;
+	private String subject;
+	private String summary;
+	private Date startDate;
+	private Date endDate;
+	private int person;
+	private String content;
+	private String link;
+	private String problem;
+	private String solution;
+	private String image;
 	private String id;
 }

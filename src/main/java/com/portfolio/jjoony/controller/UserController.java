@@ -12,10 +12,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.portfolio.jjoony.security.CustomUserDetails;
 import com.portfolio.jjoony.security.LoginRequest;
 import com.portfolio.jjoony.security.LoginResponse;
 import com.portfolio.jjoony.service.UserService;
 
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -34,9 +36,6 @@ public class UserController {
 //	about 주소, 자격증, email 정보 수정
 	@PutMapping("/update_about")
 	public ResponseEntity<LoginResponse> update_about(@RequestBody LoginRequest request){
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-	    System.out.println("Authenticated User: " + authentication.getName());
-	    System.out.println("Authorities: " + authentication.getAuthorities());
 		return new ResponseEntity<>(service.updatae(request),HttpStatus.OK);
 	}
 	
