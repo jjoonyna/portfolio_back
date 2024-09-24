@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,9 +55,25 @@ public class ProjectController {
 		return new ResponseEntity<>(projectList,HttpStatus.OK);
 	}
 	
+	@PutMapping(value="/update_project", consumes = "multipart/form-data")
+	public ResponseEntity<Integer> update_project(@RequestPart(value="image", required=false) MultipartFile image,
+													@RequestPart("project") Project project){
+		int result = 0;
+		if(image ==null) {
+	    	result = -3;
+	    	return new ResponseEntity<>(result,HttpStatus.OK);
+	    }else {
+	    	Project beforeProject = service.getProject(project.getNo());
+	    	s3service.deleteImageFromS3(beforeProject.getImage());
+	    	System.out.println("기존 이미지삭제 완료");
+	    	project.setImage(s3service.upload(image));
+	    	result = service.updateProject(project);
+	    	return new ResponseEntity<>(result,HttpStatus.OK);
+	    }
+	}
+	
 	@DeleteMapping("/delete_project/{no}")
 	public ResponseEntity<Integer> delete_project(@PathVariable("no") int no){
-		System.out.println("hihihi::::"+no);
 		Project project = service.getProject(no);
 		String image = project.getImage();
 		s3service.deleteImageFromS3(image);

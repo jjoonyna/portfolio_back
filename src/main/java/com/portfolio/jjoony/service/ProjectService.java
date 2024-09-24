@@ -32,6 +32,11 @@ public class ProjectService {
 	public int deleteProject(int no) {
 		return dao.deleteProject(no);
 	}
+
+	public int updateProject(Project project) {
+		System.out.println("hihi");
+		return dao.updateProject(project);
+	}
 	
 	
 	

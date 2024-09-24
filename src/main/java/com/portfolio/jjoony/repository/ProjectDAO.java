@@ -17,4 +17,6 @@ public interface ProjectDAO {
 
 	Project getProject(int no);
 
+	int updateProject(Project project);
+
 }

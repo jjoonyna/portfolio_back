@@ -12,6 +12,21 @@
 		select * from project where no=#{no}
 	</select>
 	
+	<update id="updateProject" parameterType="project">
+		update project set 
+		subject=#{subject},
+		summary=#{summary},
+		person=#{person},
+		startDate=#{startDate},
+		endDate=#{endDate},
+		content=#{content},
+		link=#{link},
+		problem=#{problem},
+		solution=#{solution},
+		image=#{image}
+		where no=#{no}
+	</update>
+	
 	<delete id="deleteProject" parameterType="int">
 		delete from project where no=#{no}
 	</delete>
