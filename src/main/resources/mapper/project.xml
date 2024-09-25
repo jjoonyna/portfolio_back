@@ -4,8 +4,9 @@
 
 
 <mapper namespace="com.portfolio.jjoony.repository.ProjectDAO">
+
 	<select id="getProjects" parameterType="String" resultType="project">
-		select * from project where id=#{id}
+		select * from project where id=#{id} order by startDate desc
 	</select>
 	
 	<select id="getProject" parameterType="int" resultType="project">
