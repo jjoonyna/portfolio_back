@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.portfolio.jjoony.repository.SkillsDAO">
+
+	<select id="getSkills" parameterType="String" resultType="skills">
+		select * from skills where id=#{id} order by category asc
+	</select>
+	
+	<select id="getSkill" parameterType="String" resultType="skills">
+		select * from skills where skill=#{skill}
+	</select>
+	
+	<delete id="deleteSkills" parameterType="String">
+		delete from skills where skill=#{skill}
+	</delete>
+	
+	<insert id="insert" parameterType="skills">
+		insert into skills(
+		skill,
+		regist,
+		id,
+		image,
+		category
+		)
+		values(
+		#{skill},
+		now(),
+		#{id},
+		#{image},
+		#{category}
+		)
+	</insert>
+	
+</mapper>
