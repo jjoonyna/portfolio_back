@@ -91,7 +91,7 @@ public class S3Service {
 		  }
 
 		  String extention = filename.substring(lastDotIndex + 1).toLowerCase();
-		  List<String> allowedExtentionList = Arrays.asList("jpg", "jpeg", "png", "gif","png");
+		  List<String> allowedExtentionList = Arrays.asList("jpg", "jpeg", "png", "gif","png","svg");
 
 		  if (!allowedExtentionList.contains(extention)) {
 		    throw new AmazonS3Exception("확장자 에러");

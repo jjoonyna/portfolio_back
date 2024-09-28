@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.portfolio.jjoony.model.User;
 import com.portfolio.jjoony.security.CustomUserDetails;
 import com.portfolio.jjoony.security.LoginRequest;
 import com.portfolio.jjoony.security.LoginResponse;
@@ -23,7 +25,7 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 public class UserController {
-	
+//	private final PasswordEncoder passwordEncoder;
 	private final UserService service;
 
 	
@@ -45,8 +47,14 @@ public class UserController {
 //	public ResponseEntity<Integer> insert_test() {
 //		User user=new User();
 //		int result = 0; 
-//		user.setId("test1");
+//		user.setId("test");
 //		user.setPwd("test1234");
+//		user.setName("테스트유저");
+//		user.setAddr("테스트주소");
+//		user.setBirth("테스트생일");
+//		user.setEmail("테스트이메일");
+//		user.setUniversity("테스트학교");
+//		user.setLicense("없음");
 //		user.setRole("ROLE_TEST");
 //		String encpassword = passwordEncoder.encode(user.getPwd());
 //		user.setPwd(encpassword);
@@ -54,5 +62,5 @@ public class UserController {
 //		
 //		return new ResponseEntity<>(result, HttpStatus.OK);
 //	}
-	
+//	
 }

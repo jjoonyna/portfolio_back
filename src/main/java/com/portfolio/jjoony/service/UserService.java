@@ -18,9 +18,9 @@ public class UserService {
 	private final UserDAO dao;
 	private final PasswordEncoder passwordEncoder;
 	
-//	public int insertTest(User user) {
-//		return dao.insertTest(user);
-//	}
+	public int insertTest(User user) {
+		return dao.insertTest(user);
+	}
 
 
 	//about정보 찾아오기

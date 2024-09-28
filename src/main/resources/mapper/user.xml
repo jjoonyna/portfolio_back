@@ -25,12 +25,12 @@
 		values(
 		#{id},
 		#{pwd},
-		null,
-		null,
-		null,
-		null,
-		null,
-		null,
+		#{name},
+		#{addr},
+		#{birth},
+		#{email},
+		#{university},
+		#{license},
 		#{role}
 		)
 	</insert>
