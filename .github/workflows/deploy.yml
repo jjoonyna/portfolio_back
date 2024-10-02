@@ -27,7 +27,7 @@ jobs:
     - name: Docker build
       run: |
         docker login -u ${{ secrets.DOCKER_ID }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker build -t app .
+        docker build -t portfolio .
         docker tag app ${{ secrets.DOCKER_ID }}/portfolio:latest
         docker push ${{ secrets.DOCKER_ID }}/portfolio:latest
     - name: Deploy
