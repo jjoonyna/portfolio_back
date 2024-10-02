@@ -28,8 +28,8 @@ jobs:
       run: |
         docker login -u ${{ secrets.DOCKER_ID }} -p ${{ secrets.DOCKER_PASSWORD }}
         docker build -t app .
-        docker tag app ${{ secrets.DOCKER_ID }}/portfolio:late
-        docker push ${{ secrets.DOCKER_ID }}/portfolio:late
+        docker tag app ${{ secrets.DOCKER_ID }}/portfolio:latest
+        docker push ${{ secrets.DOCKER_ID }}/portfolio:latest
     - name: Deploy
       uses: jjoonyna/portfolio_back@master
       with:
@@ -38,8 +38,8 @@ jobs:
         key: ${{ secrets.EC2_PRIVATE_KEY }} # pem 키
         # 도커 작업
         script: |
-          docker pull ${{ secrets.DOCKER_ID }}/portfolio:late
+          docker pull ${{ secrets.DOCKER_ID }}/portfolio:latest
           docker stop $(docker ps -a -q)
-          docker run -d --log-driver=syslog -p 8080:8080 ${{ secrets.DOCKER_ID }}/portfolio:late
+          docker run -d --log-driver=syslog -p 8080:8080 ${{ secrets.DOCKER_ID }}/portfolio:latest
           docker rm $(docker ps --filter 'status=exited' -a -q)
           docker image prune -a -f
