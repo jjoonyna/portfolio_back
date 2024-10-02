@@ -50,7 +50,7 @@ public class SecurityConfig {
 			CorsConfigurationSource source = request -> {
 				CorsConfiguration config = new CorsConfiguration();
 					config.setAllowedOrigins(
-						List.of("http://localhost:5173","http://localhost:80","https://jjoony-portfolio.site","https://www.jjoony-portfolio.site")
+						List.of("http://localhost:5173","http://localhost:80","https://jjoony-portfolio.site")
 					);
 					config.setAllowedMethods(
 						List.of("GET", "POST", "PUT", "DELETE", "OPTIONS")
